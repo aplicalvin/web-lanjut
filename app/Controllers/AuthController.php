@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\UserModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class AuthController extends BaseController
@@ -10,6 +11,7 @@ class AuthController extends BaseController
     function __construct()
     {
         helper('form');
+        $this->user = new UserModel();
     }
     public function login()
     {
