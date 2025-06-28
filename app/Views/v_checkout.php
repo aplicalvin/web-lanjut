@@ -1,5 +1,4 @@
 <?= $this->extend('layout') ?>
-namespace App\Views;
 <?= $this->section('content') ?>
 <div class="row">
     <div class="col-lg-6">
@@ -83,7 +82,6 @@ namespace App\Views;
 $(document).ready(function() {
     var ongkir = 0;
     var total = 0; 
-
     hitungTotal();
 
     $('#kelurahan').select2({
@@ -111,11 +109,6 @@ $(document).ready(function() {
         },
         minimumInputLength: 3
     });
-
-    $("#layanan").on('change', function() {
-        ongkir = parseInt($(this).val());
-        hitungTotal();
-    });  
 
     function hitungTotal() {
         total = ongkir + <?= $total ?>;

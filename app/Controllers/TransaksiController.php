@@ -82,7 +82,7 @@ class TransaksiController extends BaseController
 
     public function getLocation()
     {
-            //keyword pencarian yang dikirimkan dari halaman checkout
+        //keyword pencarian yang dikirimkan dari halaman checkout
         $search = $this->request->getGet('search');
 
         $response = $this->client->request(
