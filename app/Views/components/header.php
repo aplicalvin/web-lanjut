@@ -15,6 +15,12 @@
         <button type="submit" title="Search"><i class="bi bi-search"></i></button>
       </form>
     </div><!-- End Search Bar -->
+    <div class="bg-success py-1 px-2 rounded text-light">
+        <!-- <p> -->
+          Hari ini ada diskon 
+          <?php print_r(session()->get('diskon')['nominal']); ?>
+        <!-- </p> -->
+    </div>
 
     <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">

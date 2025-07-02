@@ -3,15 +3,18 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\DiskonModel;
 use App\Models\UserModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class AuthController extends BaseController
 {
+    protected $diskon;
     function __construct()
     {
         helper('form');
         $this->user = new UserModel();
+        $this->diskon = new DiskonModel();
     }
     public function login()
     {
@@ -22,8 +25,10 @@ class AuthController extends BaseController
             ];
 
             if ($this->validate($rules)) {
+                $today = date('y-m-d');
                 $username = $this->request->getVar('username');
                 $password = $this->request->getVar('password');
+                $diskon = $this->diskon->where('tanggal =', $today)->first();
 
                 $dataUser = $this->user->where(['username' => $username])->first(); //pasw 1234567
 
@@ -32,6 +37,7 @@ class AuthController extends BaseController
                         session()->set([
                             'username' => $dataUser['username'],
                             'role' => $dataUser['role'],
+                            'diskon' => $diskon,
                             'isLoggedIn' => TRUE
                         ]);
 
