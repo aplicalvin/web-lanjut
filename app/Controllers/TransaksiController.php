@@ -39,7 +39,7 @@ class TransaksiController extends BaseController
             }
             unset($item);
 
-            $data['total'] = $this->cart->total() - ($diskon * $this->cart->total());
+            $data['total'] = $this->cart->total() - $diskon ;
         }
         return view('v_keranjang', $data);
     }
