@@ -92,7 +92,7 @@ class TransaksiController extends BaseController
     {
         $data['items'] = $this->cart->contents();
         $data['total'] = $this->cart->total();
-        dd($data);
+        // dd($data);
 
         return view('v_checkout', $data);
     }
