@@ -24,7 +24,7 @@ class Redirect implements FilterInterface
 
         if ($session->get('isLoggedIn')) {
 
-            return redirect()->to(site_url('produk'));
+            return redirect()->to(site_url('/produk'));
         }
     }
 }

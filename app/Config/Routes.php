@@ -1,5 +1,6 @@
 <?php
 
+use App\Controllers\DiskonController;
 use CodeIgniter\Router\RouteCollection;
 
 /**
@@ -22,6 +23,16 @@ $routes->group('produk', ['filter' => 'auth'], function ($routes) {
     $routes->post('edit/(:any)', 'ProdukController::edit/$1');
     $routes->get('delete/(:any)', 'ProdukController::delete/$1');
     $routes->get('download', 'ProdukController::download');
+});
+
+$routes->group('diskon', ['filter' => 'auth'], function ($routes) { 
+    $routes->get('', 'DiskonController::index');
+    $routes->post('', 'DiskonController::create');
+    $routes->post('edit/(:any)', 'DiskonController::edit/$1');
+    $routes->get('delete/(:any)', 'DiskonController::delete/$1');
+    $routes->post('edit/(:any)', 'DiskonController::edit/$1');
+    $routes->get('delete/(:any)', 'DiskonController::delete/$1');
+    $routes->get('download', 'DiskonController::download');
 });
 
 $routes->group('keranjang', ['filter' => 'auth'], function ($routes) {

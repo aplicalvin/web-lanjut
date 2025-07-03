@@ -24,6 +24,12 @@
             <i class="bi bi-receipt"></i>
             <span>Produk</span>
         </a>
+    </li><!-- End diskon Nav --> 
+    <li class="nav-item">
+        <a class="nav-link <?php echo (uri_string() == 'diskon') ? "" : "collapsed" ?>" href="diskon">
+            <i class="bi bi-receipt"></i>
+            <span>Diskon</span>
+        </a>
     </li><!-- End Produk Nav --> 
    
 
