@@ -28,6 +28,19 @@ class TransaksiController extends BaseController
     {
         $data['items'] = $this->cart->contents();
         $data['total'] = $this->cart->total();
+
+        // cek jika 
+        $diskon = session()->get('diskon')['nominal'];
+        if (isset(session()->get()['diskon'])) {
+
+            foreach ($data['items'] as &$item) {
+                $item['price'] = $item['price'] - $diskon;
+                $item['subtotal'] = $item['price'] * $item['qty'];
+            }
+            unset($item);
+
+            $data['total'] = $this->cart->total() - ($diskon * $this->cart->total());
+        }
         return view('v_keranjang', $data);
     }
 
