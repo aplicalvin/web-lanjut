@@ -26,20 +26,24 @@ class TransaksiController extends BaseController
 
     public function index()
     {
+        // Cek jika ada diskon di session
+        if (session()->has('diskon')) {
+            $diskon = session()->get('diskon')['nominal'];
+
+            foreach ($this->cart->contents() as $item) {
+                $updateData = [
+                    'rowid' => $item['rowid'],
+                    'price' => $item['price'] - $diskon,
+                ];
+                
+                $this->cart->update($updateData);
+            }
+        }
+
         $data['items'] = $this->cart->contents();
         $data['total'] = $this->cart->total();
 
-        // cek jika 
-        $diskon = session()->get('diskon')['nominal'];
-        if (isset($diskon)) {
-            foreach ($data['items'] as &$item) {
-                $item['price'] = $item['price'] - $diskon;
-                $item['subtotal'] = $item['price'] * $item['qty'];
-            }
-            unset($item);
-
-            $data['total'] = $this->cart->total() - ($diskon * count($data)) ;
-        }
+        // dd($data); // Gunakan ini untuk memeriksa hasil akhir jika perlu
         return view('v_keranjang', $data);
     }
 
@@ -88,6 +92,7 @@ class TransaksiController extends BaseController
     {
         $data['items'] = $this->cart->contents();
         $data['total'] = $this->cart->total();
+        dd($data);
 
         return view('v_checkout', $data);
     }
