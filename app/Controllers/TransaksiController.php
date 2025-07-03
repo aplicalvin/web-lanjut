@@ -31,15 +31,14 @@ class TransaksiController extends BaseController
 
         // cek jika 
         $diskon = session()->get('diskon')['nominal'];
-        if (isset(session()->get()['diskon'])) {
-
+        if (isset($diskon)) {
             foreach ($data['items'] as &$item) {
                 $item['price'] = $item['price'] - $diskon;
                 $item['subtotal'] = $item['price'] * $item['qty'];
             }
             unset($item);
 
-            $data['total'] = $this->cart->total() - $diskon ;
+            $data['total'] = $this->cart->total() - ($diskon * count($data)) ;
         }
         return view('v_keranjang', $data);
     }
